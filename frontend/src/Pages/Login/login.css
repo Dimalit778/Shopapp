@@ -1,0 +1,20 @@
+.loginForm {
+  background-image: url(/src/components/img/login.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+}
+.p {
+  color: rgb(223, 218, 209);
+}
+
+.signin-form {
+  display: grid;
+  gap: 30px;
+}
+
+.text a {
+  list-style: none;
+}
