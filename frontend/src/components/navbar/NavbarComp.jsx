@@ -1,10 +1,15 @@
+import { useContext } from 'react';
 import './navbar.css';
 
-import { Navbar, Container } from 'react-bootstrap';
+import { Navbar, Container, Badge } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import { Store } from '../../context/Store';
 
 const NavbarComp = () => {
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { cart } = state;
+
   return (
     <>
       <Navbar
@@ -53,6 +58,19 @@ const NavbarComp = () => {
                   to="/watches"
                 >
                   Watches
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="links fw-bold text-decoration-none text-white"
+                  to="/cart"
+                >
+                  Cart
+                  {cart.cartItems.length > 0 && (
+                    <Badge pill bg="danger">
+                      {cart.cartItems.length}
+                    </Badge>
+                  )}
                 </Link>
               </li>
             </ul>

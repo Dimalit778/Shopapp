@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useReducer } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -6,6 +6,10 @@ import { Row, Col, ListGroup, Card, Badge, Button } from 'react-bootstrap';
 import './watch.css';
 import Rating from '../../hooks/Rating';
 import { Helmet } from 'react-helmet-async';
+import LoadingBox from '../../hooks/LoadingBox';
+import MessageBox from '../../hooks/MessageBox';
+import { getError } from '../../utilis/utilis.js';
+import { Store } from '../../context/Store';
 
 //// ! REDUX TO PRODUCTS----------
 const reducer = (state, action) => {
@@ -39,16 +43,41 @@ const Watch = () => {
 
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (err) {
-        dispatch({ type: 'FETCH_FAIL', payload: err.message });
+        dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
       }
     };
     fetchData();
   }, [id]);
 
+  // ! { USE STORE CONTEXT }-------
+  // CHANGE THE NAME OF dispatch to ctxDispatch TO BE DIFFARENT FROM THE dispatch BELOW
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { cart } = state;
+
+  console.log(state);
+
+  const addToCartHandler = async () => {
+    const existItem = cart.cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    console.log(quantity);
+    const { data } = await axios.get(`/api/product/id/${product._id}`);
+    if (data.countInStock < quantity) {
+      window.alert('Sorry. Product is out of stock');
+      return;
+    }
+
+    ctxDispatch({
+      type: 'CART_ADD_ITEM',
+      payload: { ...product, quantity: 1 },
+    });
+  };
+
   return loading ? (
-    <div>Loading...</div>
+    // ! { LOADING BOX COMPONENT }-------
+    <LoadingBox />
   ) : error ? (
-    <div>{error}</div>
+    // ! { MESSAGE BOX COMPONENT }-------
+    <MessageBox variant="danger">{error}</MessageBox>
   ) : (
     //// ! WATCH CARD ----------
     <div className="watch-card mt-5">
@@ -91,7 +120,6 @@ const Watch = () => {
                   <Row>
                     <Col>Status</Col>
                     <Col>
-                      {' '}
                       {product.countInStock > 0 ? (
                         <Badge bg="success">In Stock</Badge>
                       ) : (
@@ -104,7 +132,9 @@ const Watch = () => {
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
                     <div className="d-grid">
-                      <Button variant="primary">Add to Cart</Button>
+                      <Button onClick={addToCartHandler} variant="primary">
+                        Add to Cart
+                      </Button>
                     </div>
                   </ListGroup.Item>
                 )}

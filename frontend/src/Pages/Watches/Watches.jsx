@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 // import logger from 'use-reducer-logger';
 import Rating from '../../hooks/Rating';
 import { Helmet } from 'react-helmet-async';
+import LoadingBox from '../../hooks/LoadingBox';
+import MessageBox from '../../hooks/MessageBox';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -47,22 +49,28 @@ const Watches = () => {
       </Helmet>
       <ul className="watchCard  d-flex flex-wrap gap-5  ">
         {loading ? (
-          <div>Lodaing...</div>
+          // ! { LOADING BOX COMPONENT }-------
+          <LoadingBox />
         ) : error ? (
-          <div>{error}</div>
+          // ! { MESSAGE BOX COMPONENT }-------
+          <MessageBox variant="danger">{error}</MessageBox>
         ) : (
-          products.map((item) => (
+          products.map((products) => (
             <li
               className="card card-body justify-content-between"
-              key={item._id}
+              key={products._id}
             >
-              <Link to={`watch/${item._id}`}>
-                <h2>{item.name}</h2>
+              <Link to={`watch/${products._id}`}>
+                <h2>{products.name}</h2>
               </Link>
-              <img className="card-image" src={item.img} alt={item.img} />
-              <p>company : {item.company}</p>
-              <Rating rating={item.rating} numReview={item.numReview} />
-              <p>Price : {item.price}</p>
+              <img
+                className="card-image"
+                src={products.img}
+                alt={products.img}
+              />
+              <p>company : {products.company}</p>
+              <Rating rating={products.rating} numReview={products.numReview} />
+              <p>Price : {products.price}</p>
               <div className="d-flex justify-content-between ">
                 <button className="btn-read">Read more</button>
                 <button className="btn-cart">Add to cart</button>

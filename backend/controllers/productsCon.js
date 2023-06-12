@@ -11,11 +11,11 @@ export const getAllProducts = async (req, res, next) => {
     next(err);
   }
 };
-export const getProduct = async (req, res, next) => {
+export const getProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
     res.status(200).json(product);
   } catch (err) {
-    next(err);
+    res.status(404).send({ message: 'Product Not Found' });
   }
 };
