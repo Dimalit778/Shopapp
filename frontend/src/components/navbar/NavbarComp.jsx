@@ -14,7 +14,7 @@ const NavbarComp = () => {
         className=" sticky-top"
       >
         <Container>
-          <Navbar.Brand>Navbar Brand</Navbar.Brand>
+          <Navbar.Brand>Luxury</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <ul className="d-flex list-unstyled gap-2 ms-auto text-center">

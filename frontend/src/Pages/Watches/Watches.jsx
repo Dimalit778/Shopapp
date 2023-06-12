@@ -1,7 +1,10 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
+import './wathes.css';
 import { useReducer } from 'react';
+import { Link } from 'react-router-dom';
 import logger from 'use-reducer-logger';
+import Rating from '../../hooks/Rating';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -17,7 +20,7 @@ const reducer = (state, action) => {
 };
 
 const Watches = () => {
-  const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
+  const [{ loading, error, products }, dispatch] = useReducer(reducer, {
     products: [],
     loading: true,
     error: '',
@@ -50,9 +53,12 @@ const Watches = () => {
               className="card card-body justify-content-between"
               key={item._id}
             >
-              <h2>{item.name}</h2>
-              <img className="card-image" src={item.img} alt="" />
+              <Link to={`watch/${item._id}`}>
+                <h2>{item.name}</h2>
+              </Link>
+              <img className="card-image" src={item.img} alt={item.img} />
               <p>company : {item.company}</p>
+              <Rating rating={item.rating} numReview={item.numReview} />
               <p>Price : {item.price}</p>
               <div className="d-flex justify-content-between ">
                 <button className="btn-read">Read more</button>

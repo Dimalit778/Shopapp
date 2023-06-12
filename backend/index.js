@@ -16,13 +16,11 @@ app.use(cookieParser());
 app.use(cors());
 
 //middlewares
-app.get('/api/products', (req, res) => {
-  res.send(data);
-});
 
 app.use('/auth', authRoute);
 app.use('/users', userRoute);
 app.use('/api/products', productsRoute);
+app.use('/api/product', productsRoute);
 
 // Error handler
 app.use((err, req, res, next) => {
