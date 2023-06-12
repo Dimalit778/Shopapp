@@ -7,10 +7,9 @@ import Contact from './Pages/Contact/Contact';
 import NotFound from './Pages/NotFound/NotFound';
 import NavbarComp from './components/navbar/NavbarComp';
 import Footer from './components/Footer/Footer';
-import Games from './Pages/games/Games';
 import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
-import Gamepage from './Pages/GamePage/Gamepage';
+import Watches from './Pages/Watches/Watches';
 
 function App() {
   return (
@@ -21,8 +20,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/games" element={<Games />}>
-            <Route path="/games/:id" element={<Gamepage />} />
+          <Route path="/watches" element={<Watches />}>
+            {/* <Route path="/games/:id" element={<Gamepage />} /> */}
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

@@ -23,12 +23,10 @@ const ProductSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    default: '',
   },
   features: {
     type: Array,
-    default: [],
   },
 });
 
-export default mongoose.model('Product', UserSchema);
+export default mongoose.model('Product', ProductSchema);

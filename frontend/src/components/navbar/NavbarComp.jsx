@@ -45,9 +45,9 @@ const NavbarComp = () => {
               <li>
                 <Link
                   className="links fw-bold text-decoration-none text-white"
-                  to="/games"
+                  to="/watches"
                 >
-                  Games
+                  Watches
                 </Link>
               </li>
             </ul>
