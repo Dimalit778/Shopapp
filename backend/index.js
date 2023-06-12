@@ -6,8 +6,6 @@ import cookieParser from 'cookie-parser';
 import authRoute from './routes/authRoute.js';
 import userRoute from './routes/userRoute.js';
 import productsRoute from './routes/productsRoute.js';
-import data from './data.js';
-import axios from 'axios';
 
 const app = express();
 dotenv.config();

@@ -1,6 +1,7 @@
 import './navbar.css';
 
 import { Navbar, Container } from 'react-bootstrap';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
 const NavbarComp = () => {
@@ -14,6 +15,10 @@ const NavbarComp = () => {
         className=" sticky-top"
       >
         <Container>
+          <Helmet>
+            <title>Luxury</title>
+          </Helmet>
+
           <Navbar.Brand>Luxury</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">

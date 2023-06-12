@@ -3,8 +3,9 @@ import React, { useEffect } from 'react';
 import './wathes.css';
 import { useReducer } from 'react';
 import { Link } from 'react-router-dom';
-import logger from 'use-reducer-logger';
+// import logger from 'use-reducer-logger';
 import Rating from '../../hooks/Rating';
+import { Helmet } from 'react-helmet-async';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -41,7 +42,9 @@ const Watches = () => {
 
   return (
     <div className="Card-container">
-      <h2 className=""> All watches</h2>
+      <Helmet>
+        <title>Watches</title>
+      </Helmet>
       <ul className="watchCard  d-flex flex-wrap gap-5  ">
         {loading ? (
           <div>Lodaing...</div>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Rating = (props) => {
+  // GET rating, numReviews FROM PROPS
   const { rating, numReviews } = props;
   return (
     <div className="rating">
