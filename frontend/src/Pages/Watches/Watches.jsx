@@ -8,6 +8,7 @@ import Rating from '../../hooks/Rating';
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../../hooks/LoadingBox';
 import MessageBox from '../../hooks/MessageBox';
+import { allProducts } from '../../shopApi/ShopApi';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -33,8 +34,9 @@ const Watches = () => {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        const result = await axios.get('/api/products/allProducts');
-        dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
+        const result = await axios.request(allProducts);
+        dispatch({ type: 'FETCH_SUCCESS', payload: result.data.results });
+        console.log(result.data.results);
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err.message });
       }
@@ -58,19 +60,19 @@ const Watches = () => {
           products.map((products) => (
             <li
               className="card card-body justify-content-between"
-              key={products._id}
+              key={products.code}
             >
-              <Link to={`watch/${products._id}`}>
+              <Link to={`/${products._id}`}>
                 <h2>{products.name}</h2>
               </Link>
               <img
                 className="card-image"
-                src={products.img}
-                alt={products.img}
+                src={products.galleryImages[0].baseUrl}
+                alt={products.images.url}
               />
-              <p>company : {products.company}</p>
-              <Rating rating={products.rating} numReview={products.numReview} />
-              <p>Price : {products.price}</p>
+              {/* <p>company : {products.company}</p> */}
+              {/* <Rating rating={products.rating} numReview={products.numReview} /> */}
+              <p>Price : {products.price.formattedValue}</p>
               <div className="d-flex justify-content-between ">
                 <button className="btn-read">Read more</button>
                 <button className="btn-cart">Add to cart</button>
