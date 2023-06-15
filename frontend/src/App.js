@@ -9,20 +9,21 @@ import NavbarComp from './components/navbar/NavbarComp';
 import Footer from './components/Footer/Footer';
 import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
-import Watches from './Pages/Watches/Watches';
-import Watch from './Pages/Watch/Watch';
+import Product from './Pages/Product/Product';
+import ProductsList from './Pages/Products/ProductsList';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <NavbarComp />
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/watches" element={<Watches />} />
-          <Route path="/watches/watch/:id" element={<Watch />} />
+          <Route path="/products" element={<ProductsList />} />
+          <Route path="/products/product/:id" element={<Product />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

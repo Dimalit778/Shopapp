@@ -1,39 +1,32 @@
 import { useEffect, useReducer } from 'react';
 import axios from 'axios';
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'FETCH_REQUEST':
-      return { ...state, loading: true };
-    case 'FETCH_SUCCESS':
-      return { ...state, products: action.payload, loading: false };
-    case 'FETCH_FAIL':
-      return { ...state, loading: false, error: action.payload };
-    default:
-      return state;
-  }
+const options = {
+  method: 'GET',
+  url: 'https://asos2.p.rapidapi.com/products/v3/detail',
+  params: {
+    id: '202963669',
+    lang: 'en-US',
+    store: 'US',
+    sizeSchema: 'US',
+    currency: 'USD',
+  },
+  headers: {
+    'X-RapidAPI-Key': '13f9c247d6msh3922c0e5dad4425p1829c5jsnadc41a352f80',
+    'X-RapidAPI-Host': 'asos2.p.rapidapi.com',
+  },
 };
-
 const About = () => {
-  // const [{ loading, error, products }, dispatch] = useReducer(reducer, {
-  //   products: [],
-  //   loading: true,
-  //   error: '',
-  // });
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     dispatch({ type: 'FETCH_REQUEST' });
-  //     try {
-  //       const result = await axios.request(options);
-  //       dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
-  //       console.log(result.data.results);
-  //     } catch (err) {
-  //       dispatch({ type: 'FETCH_FAIL', payload: err.message });
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    axios
+      .request(options)
+      .then(function (respone) {
+        console.log(respone.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div className="">

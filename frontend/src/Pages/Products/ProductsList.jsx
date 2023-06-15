@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
-import './wathes.css';
+import './products.css';
 import { useReducer } from 'react';
 import { Link } from 'react-router-dom';
 // import logger from 'use-reducer-logger';
@@ -23,7 +23,7 @@ const reducer = (state, action) => {
   }
 };
 
-const Watches = () => {
+const ProductsList = () => {
   const [{ loading, error, products }, dispatch] = useReducer(reducer, {
     products: [],
     loading: true,
@@ -35,8 +35,9 @@ const Watches = () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
         const result = await axios.request(allProducts);
-        dispatch({ type: 'FETCH_SUCCESS', payload: result.data.results });
-        console.log(result.data.results);
+        // console.log(result.data.products);
+        dispatch({ type: 'FETCH_SUCCESS', payload: result.data.products });
+        // console.log(result.products);
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err.message });
       }
@@ -47,7 +48,7 @@ const Watches = () => {
   return (
     <div className="Card-container">
       <Helmet>
-        <title>Watches</title>
+        <title>Products</title>
       </Helmet>
       <ul className="watchCard  d-flex flex-wrap gap-5  ">
         {loading ? (
@@ -60,19 +61,20 @@ const Watches = () => {
           products.map((products) => (
             <li
               className="card card-body justify-content-between"
-              key={products.code}
+              key={products.id}
             >
-              <Link to={`/${products._id}`}>
+              <Link to={`product/${products.id}`}>
                 <h2>{products.name}</h2>
               </Link>
+
               <img
                 className="card-image"
-                src={products.galleryImages[0].baseUrl}
-                alt={products.images.url}
+                src={products.imageUrl}
+                alt={products.id}
               />
-              {/* <p>company : {products.company}</p> */}
-              {/* <Rating rating={products.rating} numReview={products.numReview} /> */}
-              <p>Price : {products.price.formattedValue}</p>
+              <p>Brand : {products.brandName}</p>
+              <Rating rating={products.rating} numReview={products.numReview} />
+              <p>Price : {products.price.current.text}</p>
               <div className="d-flex justify-content-between ">
                 <button className="btn-read">Read more</button>
                 <button className="btn-cart">Add to cart</button>
@@ -85,4 +87,4 @@ const Watches = () => {
   );
 };
 
-export default Watches;
+export default ProductsList;
