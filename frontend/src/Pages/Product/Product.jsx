@@ -10,7 +10,6 @@ import LoadingBox from '../../hooks/LoadingBox';
 import MessageBox from '../../hooks/MessageBox';
 import { getError } from '../../utilis/utilis.js';
 import { Store } from '../../context/Store';
-import { getProduct } from '../../shopApi/ShopApi';
 
 //// ! REDUX TO PRODUCTS----------
 const reducer = (state, action) => {

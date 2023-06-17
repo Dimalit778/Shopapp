@@ -8,7 +8,6 @@ import Rating from '../../hooks/Rating';
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../../hooks/LoadingBox';
 import MessageBox from '../../hooks/MessageBox';
-import { allProducts } from '../../shopApi/ShopApi';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -34,7 +33,7 @@ const ProductsList = () => {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        const result = await axios.request(allProducts);
+        const result = await axios.request();
         // console.log(result.data.products);
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data.products });
         // console.log(result.products);

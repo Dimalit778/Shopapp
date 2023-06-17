@@ -20,28 +20,21 @@ const NavbarComp = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto  ">
-            {/* <LinkContainer> */}
             <Nav.Link as={Link} to="/" className="me-5">
               Home
             </Nav.Link>
-            {/* </LinkContainer> */}
-            <Nav.Link as={Link} to="/about" className="me-5">
-              About
-            </Nav.Link>
 
-            <Nav.Link as={Link} to="/contact" className="me-5">
-              Contact
+            <Nav.Link as={Link} to="/fligts" className="me-5">
+              Fligts
             </Nav.Link>
-            <Nav.Link as={Link} to="/products" className="me-5">
-              Products
+            <Nav.Link as={Link} to="/hotels" className="me-5">
+              Hotels
             </Nav.Link>
-            <Nav.Link as={Link} to="/cart" className="me-5">
-              Cart
-              {cart.cartItems.length > 0 && (
-                <Badge pill bg="danger">
-                  {cart.cartItems.length}
-                </Badge>
-              )}
+            <Nav.Link as={Link} to="/restaurants" className="me-5">
+              Restaurants
+            </Nav.Link>
+            <Nav.Link as={Link} to="/carRent" className="me-5">
+              Car rent
             </Nav.Link>
           </Nav>
           <Nav>
