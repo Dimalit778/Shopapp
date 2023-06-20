@@ -1,15 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './navbar.css';
-import { Navbar, Nav, Badge } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
-import { Store } from '../../context/Store';
-
 const NavbarComp = () => {
-  const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { cart } = state;
-
   return (
     <div>
       <Navbar bg="dark" expand="lg" variant="dark" className="sticky-top">

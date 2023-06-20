@@ -1,11 +1,17 @@
 import React from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import {
+  GoogleMap,
+  LoadScript,
+  Marker,
+  Autocomplete,
+} from '@react-google-maps/api';
 import './map.css';
 
 function MyComponent({ setCoordinates, setBounds, coordinates }) {
   return (
     <LoadScript googleMapsApiKey="AIzaSyCqShQ93RWqJUH1hJj0rFCNxy_XobmWa0M">
       <GoogleMap
+        libraries={'places'}
         mapContainerClassName="map_container "
         center={coordinates}
         zoom={10}
