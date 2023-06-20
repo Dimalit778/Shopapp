@@ -20,7 +20,7 @@ import { getLocationsData } from '../../DataApi/Locations';
 
 // !! -----> HOME PAGE <------ // */
 const Home = () => {
-  const [destination, setDestination] = useState('');
+  const [city, setCity] = useState('');
   const [openDate, setOpenDate] = useState(false);
   const [dates, setDates] = useState([
     {
@@ -49,18 +49,11 @@ const Home = () => {
     });
   };
 
-  // const { dispatch } = useContext(SearchContext);
+  const { dispatch } = useContext(SearchContext);
   const handleSearch = () => {
-    // dispatch({ type: 'NEW_SEARCH', paylod: { destination, dates, options } });
-    // Navigate('/hotels', { state: { destination, dates, options } });
+    dispatch({ type: 'NEW_SEARCH', paylod: { city, dates, options } });
+    Navigate('/hotels', { state: { city, dates, options } });
   };
-
-  useEffect(() => {
-    getLocationsData(destination).then((data) => {
-      setDestination(data);
-    });
-  }, []);
-  console.log(destination);
 
   return (
     <div className="homePage min-vh-100">
@@ -77,7 +70,7 @@ const Home = () => {
                 type="text"
                 placeholder="Where are you going?"
                 className="searchInput"
-                onChange={(e) => setDestination(e.target.value)}
+                onChange={(e) => setCity(e.target.value)}
               />
               {/* </Autocomplete> */}
             </div>

@@ -46,7 +46,7 @@ const ProductsList = () => {
 
   return (
     <div className="Card-container">
-      <Helmet>
+      {/* <Helmet>
         <title>Products</title>
       </Helmet>
       <ul className="watchCard  d-flex flex-wrap gap-5  ">
@@ -56,7 +56,7 @@ const ProductsList = () => {
         ) : error ? (
           // ! { MESSAGE BOX COMPONENT }-------
           <MessageBox variant="danger">{error}</MessageBox>
-        ) : (
+        ) : ( */}
           products.map((products) => (
             <li
               className="card card-body justify-content-between"

@@ -10,17 +10,17 @@ const initialState = {
   },
 };
 
-const hotelSlice = createSlice({
-  name: 'hotels',
-  initialState,
-  reducers: {
-    search : (state)=>{
-     name : state.name,
-     date : state.date,
-    },
+// const hotelSlice = createSlice({
+//   name: 'hotels',
+//   initialState,
+//   reducers: {
+//     search : (state)=>{
+//      name : state.name,
+//      date : state.date,
+//     },
    
-  },
-});
+//   },
+// });
 
 export default hotelSlice.reducer;
 clearSearch : state = initialState,
