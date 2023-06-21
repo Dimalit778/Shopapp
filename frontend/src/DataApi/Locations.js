@@ -1,7 +1,5 @@
 import axios from 'axios';
-
 const URL = 'https://travel-advisor.p.rapidapi.com/locations/auto-complete';
-
 export const getLocationsData = async (locationId) => {
   try {
     const {
@@ -9,8 +7,6 @@ export const getLocationsData = async (locationId) => {
     } = await axios(URL, {
       params: {
         query: locationId,
-        lang: 'en_US',
-        units: 'km',
       },
       headers: {
         'X-RapidAPI-Key': '13f9c247d6msh3922c0e5dad4425p1829c5jsnadc41a352f80',
