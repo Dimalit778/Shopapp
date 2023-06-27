@@ -8,6 +8,7 @@ import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
 import Restaurants from './Pages/Restaurants/Restaurants';
 import HotelsList from './Pages/Hotels/HotelsList';
+import Hotels from './Pages/Hotels/Hotels';
 
 function App() {
   return (

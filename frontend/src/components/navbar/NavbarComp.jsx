@@ -33,7 +33,7 @@ const NavbarComp = () => {
             </Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link as={Link} to="/signUp" className="me-2">
+            <Nav.Link as={Link} to="/register" className="me-2">
               SignUp
             </Nav.Link>
             <Nav.Link as={Link} to="/login" className="me-2">
