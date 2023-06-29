@@ -1,15 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './home.css';
-import cityImg from '../../assets/city.jpg';
-import mountImg from '../../assets/mountain.jpg';
-import planeImg from '../../assets/windowplane.jpg';
+
 import {
   faBed,
-  faCalendarDays,
-  faCar,
-  faPerson,
-  faPlane,
-  faTaxi,
+  faCarSide,
+  faPlaneDeparture,
+  faUtensils,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { DateRange } from 'react-date-range';
@@ -24,35 +20,9 @@ import { getCityId } from '../../components/BookingApi/SearchCity';
 // !! -----> HOME PAGE <------ // */
 const Home = () => {
   const [city, setCity] = useState('');
-  const [openDate, setOpenDate] = useState(false);
-  const [dates, setDates] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: 'selection',
-    },
-  ]);
-
-  // !! OPTIONS STATE // */
-  const [openOptions, setOpenOptions] = useState(false);
-  const [options, setOptions] = useState({
-    adult: 1,
-    children: 0,
-    room: 1,
-  });
-
-  const Navigate = useNavigate();
-  const { user } = useContext(AuthContext);
-  const handleOption = (name, operation) => {
-    setOptions((prev) => {
-      return {
-        ...prev,
-        [name]: operation === 'i' ? options[name] + 1 : options[name] - 1,
-      };
-    });
-  };
 
   const { dispatch } = useContext(SearchContext);
+  const Navigate = useNavigate();
   const handleSearch = () => {
     dispatch({ type: 'NEW_SEARCH', paylod: { city, dates, options } });
 
@@ -60,58 +30,39 @@ const Home = () => {
   };
 
   return (
-    <div className="homePage ">
-      <div className="container text-center">
+    <div className="homePage text-center p-2 ">
+      <h1 class="animate-charcter"> TRAVEL</h1>
+
+      <div className="container text-center pt-5">
         <h2>Find Youre Dream Location</h2>
-        <div className="row ">
-          <div className="col-sm-1 col-md-4 col">input</div>
-          <div className="col-sm-1 col-md-4  col ">Bouutn</div>
-          <div className="col-sm-1 col-md-2 col">Bouutn</div>
-          <div className="col-sm-1 col-md-2 col">Bouutn</div>
+        <div className="row flex-column search gap-3 pt-3">
+          <div className="icons">
+            <FontAwesomeIcon icon={faBed} className="icon" />
+            <FontAwesomeIcon icon={faPlaneDeparture} className="icon" />
+            <FontAwesomeIcon icon={faCarSide} className="icon" />
+            <FontAwesomeIcon icon={faUtensils} className="icon" />
+          </div>
+          <div className="text-center ">
+            <input
+              type="text"
+              placeholder="Where are you going?"
+              className="input text-center col-sm-4 col-lg-3 "
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </div>
+          <div className="searchItem">
+            <button className="searchBtn " onClick={handleSearch}>
+              Search
+            </button>
+          </div>
         </div>
       </div>
-      <div class="container">
-        <div class="row col-12">
-          <div class="col-sm-8 col-md-6 col-lg-12  col">col-sm-8</div>
-          <div class="col-sm-4 col-md-6 col-lg-12 col">col-sm-4</div>
-        </div>
-      </div>
+      <div className="earth mx-auto"></div>
     </div>
   );
 };
 
 export default Home;
-
-// // <div className="search col-12">
-// // {/* // !! SEARCH DATE // */}
-// // <div className="searchItem col-sm-12">
-// //   <FontAwesomeIcon icon={faBed} className="icon" />
-// //   {/* <Autocomplete> */}
-// //   <input
-// //     type="text"
-// //     placeholder="Where are you going?"
-// //     className="searchInput"
-// //     onChange={(e) => setCity(e.target.value)}
-// //   />
-// //   {/* </Autocomplete> */}
-// // </div>
-
-// // {/* // !! SEARCH BUTTON // */}
-// // <div className="searchItem col-sm-12">
-// //   <button className="searchBtn" onClick={handleSearch}>
-// //     Search
-// //   </button>
-// // </div>
-// // </div>
-
-// {
-//   /* <div className="home d-flex justify-content-center ">
-// <div className="container d-flex justify-content-center align-items-center">
-//   <h1 className="title">Find You're Dream Vacation </h1>
-
-// </div>
-// </div> */
-// }
 
 // // {
 // //   /* // !! SEARCH DATE // */
