@@ -1,5 +1,5 @@
 import axios from 'axios';
-const URL = 'https://travel-advisor.p.rapidapi.com/locations/auto-complete';
+const URL = 'https://travel-advisor.p.rapidapi.com/locations/search';
 export const getLocationsData = async (locationId) => {
   try {
     const {

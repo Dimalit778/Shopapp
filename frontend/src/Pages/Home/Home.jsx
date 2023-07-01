@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './home.css';
-
+import { customPlace } from '../../features/placeSlice';
 import {
   faBed,
   faCarSide,
@@ -8,30 +8,35 @@ import {
   faUtensils,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { DateRange } from 'react-date-range';
 import { useNavigate } from 'react-router-dom';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import { format } from 'date-fns';
-import { SearchContext } from '../../context/searchContext';
-import { AuthContext } from '../../context/AuthContext';
-import { getCityId } from '../../components/BookingApi/SearchCity';
+import { useDispatch, useSelector } from 'react-redux';
+// import { DateRange } from 'react-date-range';
+
+// import { format } from 'date-fns';
+// import { SearchContext } from '../../context/searchContext';
+
+// import { AuthContext } from '../../context/AuthContext';
+// import { getCityId } from '../../components/BookingApi/SearchCity';
 
 // !! -----> HOME PAGE <------ // */
 const Home = () => {
   const [city, setCity] = useState('');
 
-  const { dispatch } = useContext(SearchContext);
-  const Navigate = useNavigate();
-  const handleSearch = () => {
-    dispatch({ type: 'NEW_SEARCH', paylod: { city, dates, options } });
+  const dispath = useDispatch();
+  const place = useSelector((state) => state.placeSlice.place);
 
-    Navigate('/hotels', { state: { city, dates, options } });
+  const Navigate = useNavigate();
+
+  const handleSearch = () => {
+    dispath(customPlace({ placeName: city }));
+    Navigate('/location');
   };
 
   return (
     <div className="homePage text-center p-2 ">
-      <h1 class="animate-charcter"> TRAVEL</h1>
+      <h1 className="animate-charcter"> TRAVEL</h1>
 
       <div className="container text-center pt-5">
         <h2>Find Youre Dream Location</h2>
@@ -42,6 +47,7 @@ const Home = () => {
             <FontAwesomeIcon icon={faCarSide} className="icon" />
             <FontAwesomeIcon icon={faUtensils} className="icon" />
           </div>
+
           <div className="text-center ">
             <input
               type="text"

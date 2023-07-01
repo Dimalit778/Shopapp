@@ -35,7 +35,7 @@ app.use((err, req, res, next) => {
 const dbOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
 mongoose
-  .connect(process.env.DB_STORE, dbOptions)
+  .connect(process.env.DB_TRAVEL, dbOptions)
   .then(() => console.log('DB store connected!'))
   .catch((err) => console.log(err));
 

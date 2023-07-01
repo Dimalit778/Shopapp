@@ -8,7 +8,8 @@ import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
 import Restaurants from './Pages/Restaurants/Restaurants';
 import HotelsList from './Pages/Hotels/HotelsList';
-import Hotels from './Pages/Hotels/Hotels';
+// import Hotels from './Pages/Hotels/Hotels';
+import Location from './Pages/Location/Location';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           {/* <Route path="/fligts" element={<About />} /> */}
+          <Route path="/location" element={<Location />} />
 
           <Route path="/restaurants" element={<Restaurants />} />
           <Route path="/hotels" element={<HotelsList />} />
