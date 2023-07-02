@@ -8,10 +8,10 @@ const placeSlice = createSlice({
   name: 'place',
   initialState,
   reducers: {
-    customPlace: (state, actions) => {
+    newSearch: (state, actions) => {
       state.place = actions.payload.placeName;
     },
   },
 });
-export const { customPlace } = placeSlice.actions;
+export const { newSearch } = placeSlice.actions;
 export default placeSlice.reducer;

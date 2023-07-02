@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './home.css';
-import { customPlace } from '../../features/placeSlice';
+import { newSearch } from '../../features/placeSlice';
 import {
   faBed,
   faCarSide,
@@ -30,7 +30,7 @@ const Home = () => {
   const Navigate = useNavigate();
 
   const handleSearch = () => {
-    dispath(customPlace({ placeName: city }));
+    dispath(newSearch({ placeName: city }));
     Navigate('/location');
   };
 
