@@ -1,34 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import './location.css';
 import { useSelector, useDispatch } from 'react-redux';
+import { getLocation } from '../../TripadvisorApi/Locations';
+
 import {
   faBed,
   faCarSide,
   faPlaneDeparture,
   faUtensils,
 } from '@fortawesome/free-solid-svg-icons';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
-
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import { getCityData } from '../../DataApi/Locations';
 
 const Location = () => {
   const Navigate = useNavigate();
   const dispath = useDispatch();
   const place = useSelector((state) => state.placeSlice.place);
+  const cityDetails = useSelector((state) => state.cityDataSlice.cityData);
   const [locationData, setLocationData] = useState([]);
   const [cityData, setCityData] = useState('[]');
 
   useEffect(() => {
     if (!place) Navigate('/');
-    getCityData(place).then((data) => {
-      setCityData(data);
-    });
-
-    console.log(cityData);
+    // getLocation(place).then((data) => {
+    //   setLocationData(data);
+    // });
+    console.log(cityDetails);
+    // console.log(locationData);
     // setLocationData(cityName.data[0].name);
   }, []);
 

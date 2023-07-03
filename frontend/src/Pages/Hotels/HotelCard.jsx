@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { getHotels } from '../../DataApi/Hotels';
 
 const HotelCard = ({ loactionId, checkInDay, adult, child, nights, room }) => {
   const [hotel, setHotel] = useState([]);

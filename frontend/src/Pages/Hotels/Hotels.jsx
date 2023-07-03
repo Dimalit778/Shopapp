@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { getLocationsData } from '../../DataApi/Locations';
+
 import { SearchContext } from '../../context/searchContext';
 import HotelCard from './HotelCard';
 import {
@@ -29,7 +29,7 @@ const Hotels = () => {
   // });
 
   const Navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
   // const handleOption = (name, operation) => {
   //   setOptions((prev) => {
   //     return {

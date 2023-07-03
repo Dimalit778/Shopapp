@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './home.css';
 import { newSearch } from '../../features/placeSlice';
 import {
@@ -12,27 +12,31 @@ import { useNavigate } from 'react-router-dom';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { useDispatch, useSelector } from 'react-redux';
+import { getLocation } from '../../TripadvisorApi/Locations';
+import { addData } from '../../features/cityDataSlice';
+
 // import { DateRange } from 'react-date-range';
 
 // import { format } from 'date-fns';
-// import { SearchContext } from '../../context/searchContext';
-
-// import { AuthContext } from '../../context/AuthContext';
-// import { getCityId } from '../../components/BookingApi/SearchCity';
 
 // !! -----> HOME PAGE <------ // */
 const Home = () => {
   const [city, setCity] = useState('');
 
-  const dispath = useDispatch();
   const place = useSelector((state) => state.placeSlice.place);
-
+  const cityId = useSelector((state) => state.cityDataSlice.cityData);
+  const dispath = useDispatch();
   const Navigate = useNavigate();
 
   const handleSearch = () => {
-    dispath(newSearch({ placeName: city }));
-    Navigate('/location');
+    // Navigate('/location');
+    getLocation(city).then((data) => {
+      dispath(addData(data));
+    });
   };
+
+  // useEffect(() => {}, [city]);
+  // console.log(cityDetails);
 
   return (
     <div className="homePage text-center p-2 ">
@@ -52,6 +56,7 @@ const Home = () => {
             <input
               type="text"
               placeholder="Where are you going?"
+              value={city}
               className="input text-center col-sm-4 col-lg-3 "
               onChange={(e) => setCity(e.target.value)}
             />

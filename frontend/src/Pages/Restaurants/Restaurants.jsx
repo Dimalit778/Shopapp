@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getPlacesData } from '../../DataApi/Restaurats';
+// import { getPlacesData } from '../../DataApi/Restaurats';
 import Map from '../../components/Map/Map';
 
 const Restaurants = () => {
@@ -16,13 +16,6 @@ const Restaurants = () => {
     );
   }, []);
 
-  useEffect(() => {
-    // console.log(coordinates);
-    // console.log(bounds);
-    getPlacesData().then((data) => {
-      setPlaces(data);
-    });
-  }, [coordinates, bounds]);
   return (
     <>
       {/* <SearchForm /> */}
